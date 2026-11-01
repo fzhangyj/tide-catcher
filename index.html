@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d1514" />
+    <title>潮汐捕光 · TIDE CATCHER</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <p class="eyebrow">TIDE CATCHER / 01</p>
+            <h1>潮汐捕光</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" id="soundBtn" type="button" aria-label="切换声音" aria-pressed="true" title="声音开关">声</button>
+          <button class="icon-button" id="helpBtn" type="button" aria-label="查看玩法" title="查看玩法">?</button>
+        </div>
+      </header>
+
+      <section class="game-layout">
+        <section class="play-column" aria-label="游戏区域">
+          <div class="game-meta">
+            <div class="meta-chip"><span class="status-dot"></span><span id="statusText">准备出航</span></div>
+            <div class="wave-label">WAVE <strong id="waveValue">1</strong></div>
+          </div>
+
+          <div class="canvas-frame">
+            <canvas id="gameCanvas" aria-label="潮汐捕光游戏画布"></canvas>
+            <div class="canvas-hint" id="canvasHint">
+              <span class="hint-key">拖动</span> 转动潮汐环
+            </div>
+            <div class="center-message" id="centerMessage">
+              <p class="message-kicker">THE NIGHT CURRENT</p>
+              <h2>把光送回海里</h2>
+              <p>转动潮汐环，让漂浮的光粒落入同色能量槽。</p>
+              <button class="primary-button" id="startBtn" type="button"><span>开始捕光</span><span class="button-arrow">↗</span></button>
+            </div>
+          </div>
+
+          <div class="control-strip">
+            <div class="control-copy"><span class="control-label">操控</span><span>拖动环面，或使用 ← →</span></div>
+            <button class="secondary-button" id="pauseBtn" type="button" disabled><span id="pauseLabel">暂停</span><span class="pause-glyph">Ⅱ</span></button>
+          </div>
+        </section>
+
+        <aside class="score-column" aria-label="游戏数据">
+          <div class="score-hero">
+            <p class="eyebrow">CURRENT SCORE</p>
+            <div class="score-value" id="scoreValue">0000</div>
+            <div class="score-delta" id="scoreDelta">+0 本局</div>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-card"><span class="stat-label">连击</span><strong id="comboValue">x0</strong><span class="stat-note">连续同色</span></div>
+            <div class="stat-card"><span class="stat-label">生命</span><strong id="livesValue">●●●</strong><span class="stat-note">错色会熄灭</span></div>
+          </div>
+
+          <div class="meter-block">
+            <div class="meter-heading"><span>潮汐稳定度</span><strong id="stabilityValue">100%</strong></div>
+            <div class="meter-track"><span id="stabilityMeter"></span></div>
+          </div>
+
+          <div class="legend-block">
+            <div class="section-heading"><span>能量槽</span><span class="section-rule"></span></div>
+            <div class="legend-row"><span class="legend-swatch coral"></span><span>珊瑚红</span><span class="legend-key">A</span></div>
+            <div class="legend-row"><span class="legend-swatch cyan"></span><span>潮汐青</span><span class="legend-key">S</span></div>
+            <div class="legend-row"><span class="legend-swatch gold"></span><span>月光金</span><span class="legend-key">D</span></div>
+          </div>
+
+          <div class="tip-block"><span class="tip-mark">✦</span><p id="tipText">提示：先稳住节奏，再追求连击。</p></div>
+          <button class="ghost-button" id="restartBtn" type="button" disabled>重新开始 <span>↻</span></button>
+        </aside>
+      </section>
+
+      <footer class="footer-line"><span>一局约 90 秒</span><span>·</span><span>让潮汐替你记住节奏</span></footer>
+    </main>
+    <dialog id="helpDialog">
+      <div class="dialog-inner">
+        <button class="dialog-close" id="closeHelp" type="button" aria-label="关闭">×</button>
+        <p class="eyebrow">HOW TO PLAY</p>
+        <h2>把光送回海里</h2>
+        <p>光粒会从外圈缓慢漂向中心。拖动潮汐环旋转，让光粒对准同色能量槽。接住同色光粒会增加连击，错色会降低稳定度。</p>
+        <div class="dialog-controls"><span>键盘</span><strong>← →</strong><span>旋转潮汐环</span></div>
+        <div class="dialog-controls"><span>目标</span><strong>A / S / D</strong><span>对应珊瑚、潮汐、月光</span></div>
+        <button class="primary-button" id="dialogStart" type="button"><span>知道了，出发</span><span class="button-arrow">↗</span></button>
+      </div>
+    </dialog>
+    <script src="./game.js"></script>
+  </body>
+</html>
